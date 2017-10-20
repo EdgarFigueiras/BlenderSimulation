@@ -61,9 +61,9 @@ class ParticlesBackward(bpy.types.Operator):
                 if ((actual_state-1)>0 and (actual_state-1)<10):
                     nombreObjetoSiguiente = "Sphere.00" + str(actual_state-1)
 
-                if (actual_state>10 and actual_state<100):
+                if (actual_state>=10 and actual_state<100):
                     nombreObjeto = "Sphere.0" + str(actual_state)
-                if ((actual_state-1)>10 and (actual_state-1)<100):
+                if ((actual_state-1)>=10 and (actual_state-1)<100):
                     nombreObjetoSiguiente = "Sphere.0" + str(actual_state-1)
 
                 bpy.data.objects[nombreObjeto].hide = True
@@ -78,7 +78,7 @@ class ParticlesBackward(bpy.types.Operator):
                 if (numeroObjetoSiguiente>0 and numeroObjetoSiguiente<10):
                     nombreObjeto = "Sphere.00" + str(numeroObjetoSiguiente)
 
-                if (numeroObjetoSiguiente>10 and numeroObjetoSiguiente<100):
+                if (numeroObjetoSiguiente>=10 and numeroObjetoSiguiente<100):
                     nombreObjeto = "Sphere.0" + str(numeroObjetoSiguiente)
 
                 bpy.data.objects[nombreObjeto].hide = False

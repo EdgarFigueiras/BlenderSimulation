@@ -118,7 +118,7 @@ class OBJECT_OT_ResetButton(bpy.types.Operator):
             nombreObjeto = "Sphere"
             if (cnt>0 and cnt<10):
                 nombreObjeto = "Sphere.00" + str(cnt)
-            if (cnt>10 and cnt<100):
+            if (cnt>=10 and cnt<100):
                 nombreObjeto = "Sphere.0" + str(cnt)         
 
             bpy.data.objects[nombreObjeto].hide = False

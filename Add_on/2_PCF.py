@@ -123,6 +123,9 @@ class ParticlesGenerator(bpy.types.Operator):
                     ob.active_material = c1
                 if cont==9:
                     ob.active_material = c0
+            if (cont>=10 and cont<100):
+                nombreObjeto = "Sphere.0" + str(cont)
+                ob = bpy.data.objects.get(nombreObjeto, me)
 
 
         #Changes the saturarion of the coulours from the value of the panel
@@ -184,7 +187,7 @@ class ParticlesGenerator(bpy.types.Operator):
                 nombreObjeto="Sphere"
                 if (cnt>0 and cnt<10):
                     nombreObjeto = "Sphere.00" + str(cnt)
-                if (cnt>10 and cnt<100):
+                if (cnt>=10 and cnt<100):
                     nombreObjeto = "Sphere.0" + str(cnt)
                 
                 ob = bpy.data.objects.get(nombreObjeto, me)

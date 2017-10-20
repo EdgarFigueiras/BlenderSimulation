@@ -86,7 +86,7 @@ class ParticleCalculator(bpy.types.Operator):
                         if(rand_aux < Z[x_aux][y_aux]):
                             x_pos = x_aux - N/2
                             y_pos = y_aux - N/2
-                            z_pos = rand_aux * 1000
+                            z_pos = np.random.uniform(0, 1) * 10
                             rand_bool = True
                             #ampl = calculate_amplittude(amplX, amplY, amplZ)
                             lista.append((x_pos, y_pos, z_pos, x_pos, y_pos, z_pos, x_pos))    #All the data is stored together
