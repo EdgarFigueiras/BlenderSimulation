@@ -1,0 +1,8 @@
+6
+/Users/edgarfigueiras/Desktop/Blender2/data3d/1.psi
+/Users/edgarfigueiras/Desktop/Blender2/data3d/20.psi
+/Users/edgarfigueiras/Desktop/Blender2/data3d/40.psi
+/Users/edgarfigueiras/Desktop/Blender2/data3d/60.psi
+/Users/edgarfigueiras/Desktop/Blender2/data3d/80.psi
+/Users/edgarfigueiras/Desktop/Blender2/data3d/99.psi
+fin
