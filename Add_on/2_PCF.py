@@ -19,18 +19,28 @@ class ParticlesGenerator(bpy.types.Operator):
    
     def execute(self,context):        # execute() is called by blender when running the operator.
 
-        #Define a material
+        #Define a material HALO
         def make_material(name, diffuse, specular, alpha):
             mat = bpy.data.materials.new(name)
             mat.diffuse_color = diffuse
             mat.type = 'HALO'
             #Modify the granularity using the value from the panel in diferent properties
-            mat.halo.size = 7 - (bpy.data.scenes['Scene'].my_tool.int_box_granularity/2)  #Moddifies the Halo size of the particles
+            mat.halo.size = 1 - (bpy.data.scenes['Scene'].my_tool.int_box_granularity/2)*0.1  #Moddifies the Halo size of the particles
             mat.diffuse_intensity = 0.01 * (bpy.data.scenes['Scene'].my_tool.int_box_granularity/2)
             mat.specular_color = specular
             mat.specular_intensity = 0.01 * (bpy.data.scenes['Scene'].my_tool.int_box_granularity/2)
             mat.alpha = alpha
             mat.ambient = 0.1 * (bpy.data.scenes['Scene'].my_tool.int_box_granularity/2)
+            return mat
+
+        #Define a material VOLUME
+        def make_material_vol(name, diffuse, specular, alpha):
+            mat = bpy.data.materials.new(name)
+            mat.diffuse_color = diffuse
+            mat.type = 'VOLUME'
+            #mat.transmission_color = (1, 0, 0.0389318)
+            #mat.context.object.active_material.volume.emission_color = (1, 0.591596, 0.161029)
+            #mat.context.object.active_material.volume.reflection_color = (1, 0.0542985, 0.993902)
             return mat
 
         #Reads the binary file with the data to create the number of generators and their particles
@@ -191,9 +201,9 @@ class ParticlesGenerator(bpy.types.Operator):
                     nombreObjeto = "Sphere.0" + str(cnt)
                 
                 ob = bpy.data.objects.get(nombreObjeto, me)
-                ob.active_material = make_material('c2',(0.6,0,0),(1,1,1),saturation)
-                ob.active_material.diffuse_color = (0.256219, 0.454065, 0.6)
-                ob.active_material.alpha = 0.0984277
+                ob.active_material = make_material('cv2',(0.6,0,0),(1,1,1),saturation)
+                ob.active_material.diffuse_color = (0.19779, 0.1966, 0.6)
+                ob.active_material.alpha = 0.15
 
 
 
