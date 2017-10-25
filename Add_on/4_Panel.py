@@ -185,6 +185,72 @@ class OBJECT_OT_RenderButton(bpy.types.Operator):
 
         return{'FINISHED'} 
 
+
+#Renders all objects one by one jumping between states
+class OBJECT_OT_RenderAllButton(bpy.types.Operator):
+    bl_idname = "render_all.image"
+    bl_label = "RenderizarAllImagen"
+    country = bpy.props.StringProperty()
+
+
+    #This code 
+    def execute(self, context):
+
+        dir_image_path = bpy.data.scenes['Scene'].my_tool.image_path
+
+        #Define an error message if occurs a problem during the run, is showed using a popup
+        def error_message(self, context):
+            self.layout.label("Unable to save the Renders. Try again with other path")
+
+        #Open the file to know hom many renders will do
+        try:
+            path = bpy.data.scenes['Scene'].my_tool.path
+            file_with_data_files = open(path, 'r+')
+            total_states = file_with_data_files.readline()
+            file_with_data_files.close()
+        except:
+            bpy.context.window_manager.popup_menu(error_message, title="An error ocurred", icon='CANCEL')
+
+        for x in range(int(total_states)):
+
+            try:    
+                #Set the image format, PNG by default
+                bpy.context.scene.render.image_settings.file_format = bpy.context.scene['ImageFormat']
+
+            except:        
+                bpy.context.scene.render.image_settings.file_format = 'PNG'
+
+            try:
+
+                #Sets the path where the file will be stored, by default the same as the datafile
+                if dir_image_path == "":
+                    bpy.data.scenes['Scene'].render.filepath = bpy.data.scenes['Scene'].my_tool.path + str(x) + '.jpg'
+                    
+                    #Define a confirmation message to the default path            
+                    def confirm_message(self, context):
+                        self.layout.label("Render image saved at: " + bpy.data.scenes['Scene'].my_tool.path )
+
+                else:                
+                    bpy.data.scenes['Scene'].render.filepath = dir_image_path + str(x) + '.jpg'
+                   
+                    #Define a confirmation message to the selected path 
+                    def confirm_message(self, context):
+                        self.layout.label("Rendered image saved at: " + dir_image_path )   
+
+                bpy.ops.render.render( write_still=True ) 
+
+                bpy.ops.particle.forward()
+                
+
+            except:
+                bpy.context.window_manager.popup_menu(error_message, title="An error ocurred", icon='CANCEL')
+
+
+        bpy.context.window_manager.popup_menu(confirm_message, title="Saved successful", icon='SCENE')
+
+        return{'FINISHED'} 
+
+
 class OBJECT_OT_RenderVideoButton(bpy.types.Operator):
     bl_idname = "render.video"
     bl_label = "RenderizarVideo"
@@ -319,6 +385,8 @@ class Panel(bpy.types.Panel):
         box3.prop_search(context.scene, "ImageFormat", context.scene, "imageformats", text="" , icon='OBJECT_DATA')
 
         box3.operator("render.image", text="Save image")
+
+        box3.operator("render_all.image", text="Save all images")
 
         box3.label(text="Select the video format (AVI as default)", icon='RENDER_ANIMATION')
 

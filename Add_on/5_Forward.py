@@ -45,8 +45,10 @@ class ParticlesForward(bpy.types.Operator):
                 if (cnt>=10 and cnt<100):
                     nombreObjeto = "Sphere.0" + str(cnt) 
                 bpy.data.objects[nombreObjeto].hide = True
+                bpy.data.objects[nombreObjeto].hide_render = True
 
             bpy.data.objects["Sphere"].hide = False
+            bpy.data.objects["Sphere"].hide_render = False
             bpy.data.scenes["Scene"].my_tool.int_box_state = 0
         
         else:
@@ -67,7 +69,9 @@ class ParticlesForward(bpy.types.Operator):
                     nombreObjetoSiguiente = "Sphere.0" + str(actual_state+1)
 
                 bpy.data.objects[nombreObjeto].hide = True
+                bpy.data.objects[nombreObjeto].hide_render = True
                 bpy.data.objects[nombreObjetoSiguiente].hide = False
+                bpy.data.objects[nombreObjetoSiguiente].hide_render = False
 
                 bpy.data.scenes["Scene"].my_tool.int_box_state = actual_state + 1
 
@@ -81,7 +85,9 @@ class ParticlesForward(bpy.types.Operator):
                     nombreObjeto = "Sphere.0" + str(actual_state)
 
                 bpy.data.objects[nombreObjeto].hide = True
+                bpy.data.objects[nombreObjeto].hide_render = True
                 bpy.data.objects["Sphere"].hide = False
+                bpy.data.objects["Sphere"].hide_render = False
 
                 bpy.data.scenes["Scene"].my_tool.int_box_state = 0
 

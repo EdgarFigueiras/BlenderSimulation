@@ -203,7 +203,7 @@ class ParticlesGenerator(bpy.types.Operator):
                 ob = bpy.data.objects.get(nombreObjeto, me)
                 ob.active_material = make_material('cv2',(0.6,0,0),(1,1,1),saturation)
                 ob.active_material.diffuse_color = (0.19779, 0.1966, 0.6)
-                ob.active_material.alpha = 0.15
+                ob.active_material.alpha = 0.06
 
 
 
